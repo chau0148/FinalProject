@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * NOTE: This is just to test if the M/C works. I will be replacing the questions and code later on
+ * Questions will be on XML and will be read off from there.
+ */
 public class MultipleChoice extends Activity {
 
     private Questions questions = new Questions();

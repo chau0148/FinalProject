@@ -12,7 +12,7 @@ public class MainPage extends Activity {
     Button btn2;
     Button btn3;
     Button btn4;
-    String ACTIVITY_NAME = "Test Maker";
+    String ACTIVITY_NAME = "Test Creator";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

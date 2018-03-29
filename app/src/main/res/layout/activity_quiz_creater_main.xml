@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amychau.multiplechoicetest.QuizCreaterMain"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Test Creator. Please select an option below."
+        android:textSize="28dp"
+        android:layout_marginBottom="100dp"
+        />
+
+    <Button
+        android:id="@+id/mc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33FF8D"
+        android:textColor="#000000"
+        android:layout_marginBottom="25dp"
+        android:text="Create Multiple Choice"
+        />
+
+    <Button
+        android:id="@+id/tf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33FF8D"
+        android:textColor="#000000"
+        android:layout_marginBottom="25dp"
+        android:text="Create True or False"
+       />
+
+    <Button
+        android:id="@+id/shortAns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33FF8D"
+        android:textColor="#000000"
+        android:layout_marginBottom="25dp"
+        android:text="Create Short Answer"
+        />
+
+    <Button
+        android:id="@+id/highScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33FF8D"
+        android:textColor="#000000"
+        android:layout_marginBottom="25dp"
+        android:text="View High Scores"
+        />
+
+
+</LinearLayout>

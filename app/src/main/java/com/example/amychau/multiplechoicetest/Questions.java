@@ -2,6 +2,7 @@ package com.example.amychau.multiplechoicetest;
 
 /**
  * Created by amychau on 3/13/2018.
+ * NOTE: Temporary class to show how M/C will work. This code in this class will be replaced.
  */
 
 public class Questions {
