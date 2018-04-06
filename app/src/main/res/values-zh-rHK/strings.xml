@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">測試</string>
+    <string name="help">關於</string>
+
+    <!--Quiz StartUp Page-->
+    <string name="welcome">歡迎! 選擇一個選項</string>
+    <string name="mc">多項選擇</string>
+    <string name="tf">對或錯</string>
+    <string name="shortAns">簡短答案</string>
+    <string name="scores">高分</string>
+
+    <!--Toolbar Button-->
+    <string name="help_menu">關於</string>
+
+    <!--Help Button-->
+    <string name="help_info">作者: Amy Chau \n
+                            版本號: 01\n
+                            說明: 我不知道.</string>
+
+</resources>

@@ -6,10 +6,16 @@
     tools:context="com.example.amychau.multiplechoicetest.QuizCreaterMain"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Test Creator. Please select an option below."
+        android:text="@string/welcome"
         android:textSize="28dp"
         android:layout_marginBottom="100dp"
         />
@@ -21,7 +27,7 @@
         android:background="#33FF8D"
         android:textColor="#000000"
         android:layout_marginBottom="25dp"
-        android:text="Create Multiple Choice"
+        android:text="@string/mc"
         />
 
     <Button
@@ -31,7 +37,7 @@
         android:background="#33FF8D"
         android:textColor="#000000"
         android:layout_marginBottom="25dp"
-        android:text="Create True or False"
+        android:text="@string/tf"
        />
 
     <Button
@@ -41,7 +47,7 @@
         android:background="#33FF8D"
         android:textColor="#000000"
         android:layout_marginBottom="25dp"
-        android:text="Create Short Answer"
+        android:text="@string/shortAns"
         />
 
     <Button
@@ -51,7 +57,7 @@
         android:background="#33FF8D"
         android:textColor="#000000"
         android:layout_marginBottom="25dp"
-        android:text="View High Scores"
+        android:text="@string/scores"
         />
 
 

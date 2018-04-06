@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">MultipleChoiceTest</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_toolbar">Toolbar</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Quiz StartUp Page-->
+    <string name="welcome">Welcome to Test Creator. Please select an option below.</string>
+    <string name="mc">Create Multiple Choice Test</string>
+    <string name="tf">Create True or False Test</string>
+    <string name="shortAns">Create Short Answer Test</string>
+    <string name="scores">See High Scores</string>
+
+    <!--Toolbar Button-->
+    <string name="help">Help</string>
+
+    <!--Help Button-->
+    <string name="help_menu">Help Menu</string>
+    <string name="help_info">Author\'s Name: Amy Chau\n\nVersion Number: 01\n\nInstructions: Instructions go here, when I figure out what to do.</string>
+
 </resources>

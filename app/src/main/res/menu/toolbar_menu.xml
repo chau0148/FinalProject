@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_one"
-        android:orderInCategory="101"
-        android:showAsAction="always"
-        android:title="1 " />
+        android:id="@+id/patient"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="Patient Form " />
 
     <item
-        android:id="@+id/action_two"
+        android:id="@+id/movie"
         android:orderInCategory="200"
-        android:showAsAction="always"
-        android:title="2 " />
+        app:showAsAction="always"
+        android:title="Movie Times " />
 
     <item
-        android:id="@+id/action_three"
+        android:id="@+id/transpo"
         android:orderInCategory="300"
-        android:showAsAction="always"
-        android:title="3" />
+        app:showAsAction="always"
+        android:title="OC Transpo" />
 
     <item
-        android:id="@+id/action_four"
-        android:orderInCategory="301"
-        android:showAsAction="always"
-        android:title="4 " />
+        android:id="@+id/help"
+        android:orderInCategory="401"
+        app:showAsAction="never"
+        android:title="@string/help"/>
 
 </menu>
