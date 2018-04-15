@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.amychau.multiplechoicetest.importQuestion">
+
+
+    <TextView
+        android:id="@+id/questionTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionTxt"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt1"
+         />
+
+    <TextView
+        android:id="@+id/choicesTxt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt2"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt3"
+        />
+
+    <TextView
+        android:id="@+id/answerTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/choicesTxt4"
+         />
+
+    <TextView
+        android:id="@+id/questionTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answerTxt"
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionTxt2"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt12"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt22"
+        />
+
+    <TextView
+        android:id="@+id/choicesTxt42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choicesTxt32"
+        />
+
+    <TextView
+        android:id="@+id/answerTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/choicesTxt42"
+        />
+
+    <Button
+        android:id="@+id/questionList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33FF8D"
+        android:textColor="#000000"
+        android:layout_above="@id/progressBar"
+        android:text="@string/qList"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+</RelativeLayout>

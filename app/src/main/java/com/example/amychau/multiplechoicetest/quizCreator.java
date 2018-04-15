@@ -1,28 +1,24 @@
 package com.example.amychau.multiplechoicetest;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatCallback;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
-/**
- * This class is the main page of the Quiz Creator
- * Users can choose to create question, view the question list, or import XML file
- */
-public class QuizCreaterMain extends Activity implements AppCompatCallback {
 
-    Button createQuestion, questionList, importXml, stats;
+public class quizCreator extends AppCompatActivity {
+
+    Button mcBtn;
+    Button tfBtn;
+    Button shortAnsBtn;
     String ACTIVITY_NAME = "Quiz Creator";
     private AppCompatDelegate delagate;
 
@@ -34,52 +30,46 @@ public class QuizCreaterMain extends Activity implements AppCompatCallback {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.quiz_creator);
 
         //Add toolbar to activity
-        delagate = AppCompatDelegate.create(this, this);
-        delagate.installViewFactory();
-        super.onCreate(savedInstanceState);
-        delagate.onCreate(savedInstanceState);
-        delagate.setContentView(R.layout.activity_quiz_creater_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        delagate.setSupportActionBar(toolbar);
+//        delagate = AppCompatDelegate.create(this, this);
+//        delagate.installViewFactory();
+//        super.onCreate(savedInstanceState);
+//        delagate.onCreate(savedInstanceState);
+//        delagate.setContentView(R.layout.quiz_creator);
+//        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.my_toolbar);
+//        delagate.setSupportActionBar(toolbar);
+
 
         Log.i(ACTIVITY_NAME, "In OnCreate()");
 
-        createQuestion = findViewById(R.id.mc);
-        questionList = findViewById(R.id.questionList);
-        importXml = findViewById(R.id.importQuestion);
-        stats = findViewById(R.id.stats);
+        mcBtn = findViewById(R.id.mc);
+        tfBtn = findViewById(R.id.tf);
+        shortAnsBtn = findViewById(R.id.shortAns);
 
         //Start the activity once the respective buttons are pressed
-        createQuestion.setOnClickListener(
+        mcBtn.setOnClickListener(
                 (view1) -> {
-                    Intent intent = new Intent(QuizCreaterMain.this, quizCreator.class);
+                    Intent intent = new Intent(quizCreator.this, MultipleChoice.class);
                     startActivity(intent);
                 }
         );
 
-        questionList.setOnClickListener(
-                (view4) -> {
-                    Intent intent = new Intent(QuizCreaterMain.this, Questions.class);
+        tfBtn.setOnClickListener(
+                (view2) -> {
+                    Intent intent = new Intent(quizCreator.this, TrueFalseActivity.class);
                     startActivity(intent);
                 }
         );
 
-        importXml.setOnClickListener(
-                (view5) -> {
-                    Intent intent = new Intent(QuizCreaterMain.this, importQuestion.class);
+        shortAnsBtn.setOnClickListener(
+                (view3) -> {
+                    Intent intent = new Intent(quizCreator.this, ShortAnswerActivity.class);
                     startActivity(intent);
                 }
         );
-
-        stats.setOnClickListener(
-                (view6) -> {
-                    Intent intent = new Intent(QuizCreaterMain.this, statistics.class);
-                    startActivity(intent);
-                }
-        );
-
     }
 
     @Override
@@ -105,15 +95,10 @@ public class QuizCreaterMain extends Activity implements AppCompatCallback {
                 break;
             case R.id.help:
                 Log.d("Help Box", "Selected");
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuizCreaterMain.this);
-               builder.setTitle(R.string.help_menu)
-                       .setMessage(R.string.help_info)
-                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialogInterface, int i) {
-                               Log.d("User clicked", "OK");
-                           }
-                       }).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(quizCreator.this);
+                builder.setTitle(R.string.help_menu)
+                        .setMessage(R.string.help_info)
+                        .setPositiveButton("OK", (dialogInterface, i) -> Log.d("User clicked", "OK")).show();
                 break;
         }
         return true;
@@ -151,12 +136,12 @@ public class QuizCreaterMain extends Activity implements AppCompatCallback {
 
     @Override
     public void onSupportActionModeStarted(ActionMode mode) {
-
+        super.onSupportActionModeStarted(mode);
     }
 
     @Override
     public void onSupportActionModeFinished(ActionMode mode) {
-
+        super.onSupportActionModeFinished(mode);
     }
 
     @Nullable
@@ -164,4 +149,5 @@ public class QuizCreaterMain extends Activity implements AppCompatCallback {
     public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
         return null;
     }
+
 }

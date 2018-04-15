@@ -1,88 +1,122 @@
 package com.example.amychau.multiplechoicetest;
 
-import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.EditText;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * NOTE: This is just to test if the M/C works. I will be replacing the questions and code later on
  * Questions will be on XML and will be read off from there.
  */
-public class MultipleChoice extends Activity {
+public class MultipleChoice extends AppCompatActivity {
 
-    private Questions questions = new Questions();
+    private Button submit;
+    private EditText question, optionOne, optionTwo, optionThree, optionFour, answer;
+    private List<String> questionList;
+    private List<String> optionList;
+    private List<String> answerList;
+    private DatabaseHelper dbHelper;
+    private final String ACTIVITY_NAME = "MultipleChoice";
 
-    private TextView scoreView;
-    private TextView questionView;
-    private Button choiceOne;
-    private Button choiceTwo;
-    private Button choiceThree;
-    private Button choiceFour;
-    private String answer;
-    private int scoreNumber = 0;
-    private int questionNumber = 0;
+    QuestionDataSource dataSource;
+    OptionDataSource oDataSource;
+    AnswerDataSource aDataSource;
+
+    SQLiteDatabase db;
+ //   ArrayAdapter<QuestionModel> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_choice);
 
-        //Connect variables to XML widgets
-        scoreView = findViewById(R.id.score);
-        questionView = findViewById(R.id.question);
-        choiceOne = findViewById(R.id.choice1);
-        choiceTwo = findViewById(R.id.choice2);
-        choiceThree = findViewById(R.id.choice3);
-        choiceFour = findViewById(R.id.choice4);
+        dbHelper = new DatabaseHelper(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
 
-        updateQuestion();
+        dataSource = new QuestionDataSource(this);
+        oDataSource = new OptionDataSource(this);
+        aDataSource = new AnswerDataSource(this);
+        dataSource.open();
+        oDataSource.open();
+        aDataSource.open();
+        Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        //Clicking on Button One (Choice One)
-        choiceOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(choiceOne.getText()==answer){
-                    scoreNumber += 1;
-                    updateScore(scoreNumber);
-                    updateQuestion();
-                    Toast.makeText(MultipleChoice.this, "correct", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MultipleChoice.this, "incorrect", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        submit = findViewById(R.id.submit);
+        question = findViewById(R.id.question);
+        answer = findViewById(R.id.answerHere);
+        optionOne = findViewById(R.id.choice1);
+        optionTwo = findViewById(R.id.choice2);
+        optionThree = findViewById(R.id.choice3);
+        optionFour = findViewById(R.id.choice4);
+        questionList = new ArrayList<>();
+        optionList = new ArrayList<>();
+        answerList = new ArrayList<>();
 
-        //Clicking on Button Two (Choice Two)
-        choiceTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(choiceTwo.getText()==answer){
-                    scoreNumber += 1;
-                    updateScore(scoreNumber);
-                    updateQuestion();
-                    Toast.makeText(MultipleChoice.this, "correct", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MultipleChoice.this, "incorrect", Toast.LENGTH_SHORT).show();
-                }
-            }
+        submit.setOnClickListener((view) -> {
+            Log.i("Submit Button", "Pressed");
+            questionList.add(question.getText().toString());
+
+            optionList.add(optionOne.getText().toString());
+            optionList.add(optionTwo.getText().toString());
+            optionList.add(optionThree.getText().toString());
+            optionList.add(optionFour.getText().toString());
+
+            answerList.add(answer.getText().toString());
+
+            QuestionModel questionModel = new QuestionModel();
+            questionModel.setQuestion(question.getText().toString());
+            questionModel.setType("m");
+            questionModel = dataSource.create(questionModel);
+            long id = questionModel.getQuestionID();
+
+//            OptionModel optionModel = new OptionModel();
+//            long oId = optionModel.getId();
+            insertAnswer(answer.getText().toString(), id);
+
+            insertOptions(optionOne.getText().toString(), id);
+            insertOptions(optionTwo.getText().toString(), id);
+            insertOptions(optionThree.getText().toString(), id);
+            insertOptions(optionFour.getText().toString(), id);
+
+            question.setText("");
+            optionOne.setText("");
+            optionTwo.setText("");
+            optionThree.setText("");
+            optionFour.setText("");
+            answer.setText("");
         });
     }
 
-    private void updateQuestion(){
-        questionView.setText(questions.getQuestions(questionNumber));
-        choiceOne.setText(questions.getChoice1(questionNumber));
-        choiceTwo.setText(questions.getChoice2(questionNumber));
-        choiceThree.setText(questions.getChoice3(questionNumber));
-        choiceFour.setText(questions.getChoice4(questionNumber));
-        answer = questions.getCorrectAnswer(questionNumber);
-        questionNumber++;
+    public void insertOptions(String option, long quesId){
+        OptionModel optionModel = new OptionModel();
+        optionModel.setOptions(option);
+        optionModel.setQuestionID(quesId);
+        oDataSource.create(optionModel);
     }
 
-    private void updateScore(int score){
-        scoreNumber = score;
-        scoreView.setText(""+ score);
+    public void insertAnswer(String answer, long quesId){
+        AnswerModel answerModel = new AnswerModel();
+        answerModel.setAnswer(answer);
+        answerModel.setQuestionID(quesId);
+        aDataSource.create(answerModel);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
     }
 }
