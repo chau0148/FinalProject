@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,7 @@ public class TrueFalseActivity extends AppCompatActivity {
 
             insertAnswer("true", qid);
             question.setText("");
+            Toast.makeText(this, "Question Added", Toast.LENGTH_LONG).show();
         }));
 
         falseBtn.setOnClickListener((view -> {
@@ -79,6 +81,7 @@ public class TrueFalseActivity extends AppCompatActivity {
 
             insertAnswer("false", qid);
             question.setText("");
+            Toast.makeText(this, "Question Added", Toast.LENGTH_LONG).show();
         }));
 
     }
