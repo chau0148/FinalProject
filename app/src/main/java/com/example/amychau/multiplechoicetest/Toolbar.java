@@ -1,23 +1,21 @@
 package com.example.amychau.multiplechoicetest;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 /**
- * Toolbar is a fragment class that will show up on each of the frames.
- * This toolbar will navigate to the other activities and show the Help Menu
+ * Toolbar to show at the top of each layout/activity
  */
-public class Toolbar extends Fragment {
+public class Toolbar extends AppCompatActivity {
+
+    public android.support.v7.widget.Toolbar toolbar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,8 +23,8 @@ public class Toolbar extends Fragment {
     }
 
     public boolean onCreateOptionsMenu(Menu m){
-        getActivity().getMenuInflater().inflate(R.menu.toolbar_menu, m);
-        return true;
+        getMenuInflater().inflate(R.menu.toolbar_menu, m);
+        return super.onCreateOptionsMenu(m);
     }
 
     public boolean onOptionsItemSelected(MenuItem mi){
@@ -45,16 +43,11 @@ public class Toolbar extends Fragment {
                 break;
             case R.id.help:
                 Log.d("Help Box", "Selected");
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(Toolbar.this);
+                LayoutInflater inflater = Toolbar.this.getLayoutInflater();
                 View view = inflater.inflate(R.layout.custom_dialog, null);
                 builder.setView(view)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Log.d("User clicked", "OK");
-                            }
-                        });
+                        .setPositiveButton("OK", (dialogInterface, i) -> Log.d("User clicked", "OK"));
                 break;
         }
         return true;

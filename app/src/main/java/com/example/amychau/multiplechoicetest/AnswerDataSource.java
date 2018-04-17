@@ -10,10 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class holds the Answer Data Source for the Answer Table.
+ * It creates and finds the Answer data in table.
  * Created by amychau on 4/13/2018.
  */
 
 public class AnswerDataSource {
+    //The columns in the Answer Table
     public final String[] columns = {
             DatabaseHelper.KEY_ID,
             DatabaseHelper.KEY_ANSWER,
@@ -24,13 +27,13 @@ public class AnswerDataSource {
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase db;
 
-    public AnswerDataSource(Context context){
+    AnswerDataSource(Context context){
         dbHelper = new DatabaseHelper(context);
     }
 
-    public void open(){ db = dbHelper.getWritableDatabase();}
+    void open(){ db = dbHelper.getWritableDatabase();}
 
-    public void close(){dbHelper.close();}
+    //public void close(){dbHelper.close();}
 
     public AnswerModel create(AnswerModel answers){
         ContentValues cv = new ContentValues();

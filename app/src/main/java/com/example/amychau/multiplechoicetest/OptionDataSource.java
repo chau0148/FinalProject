@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class is the Data Source for Options.
+ * It creates the options and adds it into the database
  * Created by amychau on 4/12/2018.
  */
-
 public class OptionDataSource {
 
-    public final String[] columns = {
+    private final String[] columns = {
             DatabaseHelper.KEY_ID,
             DatabaseHelper.KEY_OPTION,
             DatabaseHelper.FK_QUESTION
@@ -25,11 +26,11 @@ public class OptionDataSource {
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase db;
 
-    public OptionDataSource(Context context){
+    OptionDataSource(Context context){
         dbHelper = new DatabaseHelper(context);
     }
 
-    public void open(){ db = dbHelper.getWritableDatabase();}
+    void open(){ db = dbHelper.getWritableDatabase();}
 
     public void close(){dbHelper.close();}
 

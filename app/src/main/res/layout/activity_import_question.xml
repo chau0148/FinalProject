@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.amychau.multiplechoicetest.importQuestion">
 
+    <include layout="@layout/app_bar"/>
 
     <TextView
         android:id="@+id/questionTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         />
 
     <TextView

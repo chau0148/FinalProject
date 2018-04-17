@@ -1,16 +1,15 @@
 package com.example.amychau.multiplechoicetest;
 
 /**
+ * This class gets and sets the Option field in the database
  * Created by amychau on 4/11/2018.
  */
-
 public class OptionModel {
 
     long id;
-    String options;
-    long questionID;
+    private String options;
+    private long questionID;
 
-    //constructors
     public OptionModel(){
 
     }
@@ -29,7 +28,7 @@ public class OptionModel {
         this.id = id;
     }
 
-    public void setOptions(String options){
+    void setOptions(String options){
         this.options = options;
     }
 
@@ -37,15 +36,15 @@ public class OptionModel {
         return this.id;
     }
 
-    public String getOptions(){
+    String getOptions(){
         return this.options;
     }
 
-    public long getQuestionID() {
+    long getQuestionID() {
         return questionID;
     }
 
-    public void setQuestionID(long questionID) {
+    void setQuestionID(long questionID) {
         this.questionID = questionID;
     }
 }

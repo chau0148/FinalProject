@@ -1,18 +1,17 @@
 package com.example.amychau.multiplechoicetest;
 
-/**
- * Created by amychau on 4/8/2018.
- */
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.TextView;
 
+/**
+ * This class holds the question that was selected in a Bundle
+ * It gets put into the fragment class
+ * Created by amychau on 4/8/2018.
+ */
 public class QuestionDetails extends Activity {
-    TextView questionHere;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

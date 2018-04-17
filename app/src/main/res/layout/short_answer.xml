@@ -6,12 +6,14 @@
     android:orientation="vertical"
     tools:context="com.example.amychau.multiplechoicetest.MultipleChoice">
 
+    <include layout="@layout/app_bar"/>
+
     <EditText
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:textSize="20sp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="60dp"
         android:hint="@string/question"
         />
 

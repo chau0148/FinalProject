@@ -1,45 +1,46 @@
 package com.example.amychau.multiplechoicetest;
 
+import android.app.AlertDialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * NOTE: This is just to test if the M/C works. I will be replacing the questions and code later on
- * Questions will be on XML and will be read off from there.
+ * This class creates a multiple choice question and adds it to the question list
+ * Creates the options for given question and adds it into the option list
+ * Creates the answer for given question and adds it into the answer list
  */
 public class MultipleChoice extends AppCompatActivity {
 
-    private Button submit;
     private EditText question, optionOne, optionTwo, optionThree, optionFour, answer;
-    private List<String> questionList;
-    private List<String> optionList;
-    private List<String> answerList;
-    private DatabaseHelper dbHelper;
+    private List<String> questionList, optionList, answerList;
     private final String ACTIVITY_NAME = "MultipleChoice";
+    private Toolbar toolbar;
 
     QuestionDataSource dataSource;
     OptionDataSource oDataSource;
     AnswerDataSource aDataSource;
-
     SQLiteDatabase db;
- //   ArrayAdapter<QuestionModel> adapter;
-
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_choice);
 
-        dbHelper = new DatabaseHelper(getApplicationContext());
+        //Add a toolbar to the activity
+        toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         db = dbHelper.getWritableDatabase();
 
         dataSource = new QuestionDataSource(this);
@@ -50,7 +51,7 @@ public class MultipleChoice extends AppCompatActivity {
         aDataSource.open();
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        submit = findViewById(R.id.submit);
+        Button submit = findViewById(R.id.submit);
         question = findViewById(R.id.question);
         answer = findViewById(R.id.answerHere);
         optionOne = findViewById(R.id.choice1);
@@ -78,8 +79,6 @@ public class MultipleChoice extends AppCompatActivity {
             questionModel = dataSource.create(questionModel);
             long id = questionModel.getQuestionID();
 
-//            OptionModel optionModel = new OptionModel();
-//            long oId = optionModel.getId();
             insertAnswer(answer.getText().toString(), id);
 
             insertOptions(optionOne.getText().toString(), id);
@@ -111,12 +110,50 @@ public class MultipleChoice extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.toolbar_menu, m);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch(mi.getItemId()){
+            case R.id.patient:
+                Log.d("Patient Form", "Selected");
+                //Go to Patient Form Activity
+                break;
+            case R.id.movie:
+                Log.d("Movie Information", "Selected");
+                //Go to Movie Information Activity
+                break;
+            case R.id.transpo:
+                Log.d("OC Transpo Information", "Selected");
+                //Go to OC Transpo Activity
+                break;
+            case R.id.help:
+                Log.d("Help Box", "Selected");
+                AlertDialog.Builder builder = new AlertDialog.Builder(MultipleChoice.this);
+                builder.setTitle(R.string.help_menu)
+                        .setMessage(R.string.help_info)
+                        .setPositiveButton("OK", (dialogInterface, i) -> Log.d("User clicked", "OK")).show();
+                break;
+        }
+        return true;
+    }
+    @Override
     public void onResume(){
         super.onResume();
+        Log.i(ACTIVITY_NAME, "In onResume()");
     }
 
     @Override
     public void onPause(){
         super.onPause();
+        Log.i(ACTIVITY_NAME, "In onPause()");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

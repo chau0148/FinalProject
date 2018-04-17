@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Créateur de quiz</string>
+    <string name="title_activity_main">Activité principale</string>
+    <string name="title_activity_toolbar">Barre d\'outils</string>
+    <string name="action_settings">Paramètres</string>
+
+    <!--Quiz StartUp Page-->
+    <string name="welcome">Bienvenue! veuillez sélectionner une option.</string>
+    <string name="createQ">Créer une question</string>
+    <string name="mc">Créer une question à choix multiple</string>
+    <string name="tf">Créer une vraie question fausse</string>
+    <string name="shortAns">Créer une question numérique</string>
+    <string name="qList">Liste de questions</string>
+    <string name="importList">Importer de XML</string>
+    <string name="stats">Statistiques</string>
+
+    <!--Toolbar Button-->
+    <string name="help">Aidez-moi</string>
+
+    <!--Help Button-->
+    <string name="help_menu">Menu d\'aide</string>
+    <string name="help_info">Nom: Amy Chau\n\nVersion Number: 01\n\nInstructions: cette application crée des questions quiz</string>
+
+    <!--Buttons on Question List-->
+    <string name="add">ajouter</string>
+    <string name="update">mettre à jour</string>
+    <string name="updateQ">mise à jour</string>
+    <string name="delete">supprimer la question</string>
+    <string name="next">Prochain</string>
+
+    <!--MC Fields-->
+    <string name="question">Ajouter une question</string>
+    <string name="choice1">choix un</string>
+    <string name="choice2">choix deux</string>
+    <string name="choice3">choix trois</string>
+    <string name="choice4">choix quatre</string>
+    <string name="submit">soumettre</string>
+    <string name="answerHere">réponse d\'entrée ici</string>
+
+    <string name="accuracy">s\'il vous plaît placer le point de précision ici (Ex: 2 pour deux décimales)</string>
+
+    <!--TF Fields-->
+    <string name="trues">vrai</string>
+    <string name="falses">faux</string>
+
+    <!--Statistics Fields-->
+    <string name="numQues">Numéro de question: </string>
+    <string name="longQues">Plus longue longueur: </string>
+    <string name="shortQues">Plus courte longueur: </string>
+    <string name="avgQues">Longueur moyenne: </string>
+</resources>

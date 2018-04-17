@@ -5,20 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
-
-import com.example.amychau.multiplechoicetest.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class is the data source for questions table
+ * Able to create a question and add it to the question table.
  * Created by amychau on 4/11/2018.
  */
-
 public class QuestionDataSource {
 
-    public final String[] columns = {
+    private final String[] columns = {
             DatabaseHelper.KEY_ID,
             DatabaseHelper.KEY_QUESTION,
             DatabaseHelper.KEY_TYPE
@@ -27,11 +25,11 @@ public class QuestionDataSource {
     SQLiteOpenHelper dbHelper;
     SQLiteDatabase db;
 
-    public QuestionDataSource(Context context){
+    QuestionDataSource(Context context){
         dbHelper = new DatabaseHelper(context);
     }
 
-    public void open(){ db = dbHelper.getWritableDatabase();}
+    void open(){ db = dbHelper.getWritableDatabase();}
 
     public void close(){dbHelper.close();}
 
@@ -44,7 +42,7 @@ public class QuestionDataSource {
         return questions;
     }
 
-    public List<QuestionModel> findQuestion(){
+    List<QuestionModel> findQuestion(){
         List<QuestionModel> questionList = new ArrayList<>();
         Cursor cursor = db.query(DatabaseHelper.TABLE_NAME_ONE, columns, null, null, null, null, null);
         if (cursor.getCount() > 0){

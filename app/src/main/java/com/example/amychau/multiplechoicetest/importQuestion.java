@@ -1,35 +1,37 @@
 package com.example.amychau.multiplechoicetest;
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import android.support.v7.widget.Toolbar;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
-public class importQuestion extends Activity {
+public class importQuestion extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME="ImportQuestion";
     protected static final String URL_STRING = "http://torunski.ca/CST2335/QuizInstance.xml";
     private ProgressBar progress;
-    private TextView questionTxt, questionTxt2, ansTxt, ansTxt2, ch1, ch2, ch3, ch4, ch12, ch22, ch32, ch42;
-    private Button questionBtn;
+    private TextView questionTxt, questionTxt2, ansTxt, ansTxt2, ch1, ch2, ch3, ch4, ch12, ch42;
     private DatabaseHelper dbHelper;
+    private Toolbar toolbar;
     SQLiteDatabase db;
     QuestionDataSource dataSource;
     OptionDataSource oDataSource;
@@ -40,6 +42,10 @@ public class importQuestion extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_question);
         Log.i(ACTIVITY_NAME, "In onCreate()");
+
+        //Add a toolbar to the activity
+        toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
 
         progress = findViewById(R.id.progressBar);
         progress.setVisibility(View.VISIBLE);
@@ -62,13 +68,11 @@ public class importQuestion extends Activity {
         ansTxt = findViewById(R.id.answerTxt);
         ansTxt2 = findViewById(R.id.answerTxt2);
         ch12 = findViewById(R.id.choicesTxt12);
-        ch22 = findViewById(R.id.choicesTxt22);
-        ch32 = findViewById(R.id.choicesTxt32);
         ch42 = findViewById(R.id.choicesTxt42);
 
-        questionBtn = findViewById(R.id.questionList);
+        Button questionBtn = findViewById(R.id.questionList);
         questionBtn.setOnClickListener(
-                (view) -> {
+                (View view) -> {
                     Intent intent = new Intent(importQuestion.this, Questions.class);
                     startActivity(intent);
                 });
@@ -206,5 +210,37 @@ public class importQuestion extends Activity {
             File file = getBaseContext().getFileStreamPath(name);
             return file.exists();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.toolbar_menu, m);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch(mi.getItemId()){
+            case R.id.patient:
+                Log.d("Patient Form", "Selected");
+                //Go to Patient Form Activity
+                break;
+            case R.id.movie:
+                Log.d("Movie Information", "Selected");
+                //Go to Movie Information Activity
+                break;
+            case R.id.transpo:
+                Log.d("OC Transpo Information", "Selected");
+                //Go to OC Transpo Activity
+                break;
+            case R.id.help:
+                Log.d("Help Box", "Selected");
+                AlertDialog.Builder builder = new AlertDialog.Builder(importQuestion.this);
+                builder.setTitle(R.string.help_menu)
+                        .setMessage(R.string.help_info)
+                        .setPositiveButton("OK", (dialogInterface, i) -> Log.d("User clicked", "OK")).show();
+                break;
+        }
+        return true;
     }
 }

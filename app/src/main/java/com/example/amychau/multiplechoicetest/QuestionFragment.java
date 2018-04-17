@@ -22,9 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Fragment class where the question that was clicked will be shown
+ * It will list the question, the answer, and the options for that given question
  * Created by amychau on 4/8/2018.
  */
-
 public class QuestionFragment extends Fragment{
     public static final String ARG_PARAM = "_id";
     private final String ACTIVITY_NAME = "QuestionFragment";
@@ -54,9 +55,7 @@ public class QuestionFragment extends Fragment{
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.question_fragment, container, false);
 
-        /**
-         * Initialize the objects and find the view
-         */
+       //Initialize the objects and find the view
         questionTxt = view.findViewById(R.id.questionHere);
         answerTxt = view.findViewById(R.id.answerHere);
         opt1 = view.findViewById(R.id.option1);
@@ -69,9 +68,8 @@ public class QuestionFragment extends Fragment{
         opbtn4 = view.findViewById(R.id.button4);
         View frameLayout = view.findViewById(R.id.question_land);
 
-        /**
-         * Checks if landscape mode or portrait mode
-         */
+
+         //Checks if landscape mode or portrait mode
         if (frameLayout != null){
             checkLayout = true;
             Log.i(ACTIVITY_NAME, "Fragment Loaded");
@@ -84,10 +82,10 @@ public class QuestionFragment extends Fragment{
         questionTxt.setText(getArguments().getString("question"));
         long id = dbHelper.findQuestionId(question);
 
-        List<OptionModel> optionList = new ArrayList<>();
+        List<OptionModel> optionList;
         optionList = dbHelper.getOptions(id);
 
-        /**
+        /*
          * Shows the options and buttons depending on the option size
          * size 4 = MC
          * size 2 = TF
@@ -104,8 +102,6 @@ public class QuestionFragment extends Fragment{
         } else if(optionList.size() == 2) {
             opt1.setText(optionList.get(0).getOptions());
             opt2.setText(optionList.get(1).getOptions());
-            opbtn1.setVisibility(View.VISIBLE);
-            opbtn2.setVisibility(View.VISIBLE);
         } else {
             String option = optionList.get(0).getOptions();
             int acc = dbHelper.getAccuracy(id);
@@ -122,9 +118,7 @@ public class QuestionFragment extends Fragment{
             ((TextView) view.findViewById(R.id.questionHere)).setText(item);
         }
 
-        /**
-         * Deletes a question using the question selected
-         */
+        //Deletes a question using the question selected
         deleteBtn = view.findViewById(R.id.deleteButton);
         deleteBtn.setOnClickListener(view -> {
             Log.i("Delete Button", "Pressed");
@@ -134,7 +128,7 @@ public class QuestionFragment extends Fragment{
             Toast.makeText(getActivity(), "Question Deleted", Toast.LENGTH_LONG).show();
         });
 
-        /**
+        /*
          * Update Question in the database
          * User will type the new question into the box to update the database
          */
@@ -145,26 +139,23 @@ public class QuestionFragment extends Fragment{
             LayoutInflater linflate = getActivity().getLayoutInflater();
             View d = linflate.inflate(R.layout.update_question, null);
             EditText newQuestion =  d.findViewById(R.id.updateQuestion) ;
-            AlertDialog.Builder builder = build.setView(d)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            SharedPreferences sharedPref = getActivity().getSharedPreferences("newQuestion", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor edit = sharedPref.edit();
-                            edit.putString("newQuestion", newQuestion.getText().toString());
-                            edit.apply();
+            AlertDialog.Builder builder = build.setView(d);
+                    builder.setPositiveButton("OK", (dialogInterface, i) -> {
+                        SharedPreferences sharedPref = getActivity().getSharedPreferences("newQuestion", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPref.edit();
+                        edit.putString("newQuestion", newQuestion.getText().toString());
+                        edit.apply();
 
-                            String newQues = sharedPref.getString("newQuestion", "");
-                            dbHelper.updateQuestion(newQues, id);
-                            questionTxt.setText(newQues);
-                        }
+                        String newQues = sharedPref.getString("newQuestion", "");
+                        dbHelper.updateQuestion(newQues, id);
+                        questionTxt.setText(newQues);
                     })
                     .setNegativeButton("Cancel", (dialogInterface, i) -> {
                     });
             build.show();
         });
 
-        /**
+        /*
          * Custom Dialog for updating the Answer.
          * User will type the answer into the box and it will update in database.
          */
@@ -194,7 +185,7 @@ public class QuestionFragment extends Fragment{
            build.show();
        });
 
-        /**
+        /*
          * Update Option 1
          * User will type the new option in the box and it will update in the database
          */
@@ -220,7 +211,7 @@ public class QuestionFragment extends Fragment{
             build.show();
         });
 
-        /**
+        /*
          * Update Option 2
          * User will type the new option in the box and it will update in the database
          */
@@ -246,7 +237,7 @@ public class QuestionFragment extends Fragment{
             build.show();
         });
 
-        /**
+        /*
          * Update Option 3
          * User will type the new option in the box and it will update in the database
          */
@@ -272,7 +263,7 @@ public class QuestionFragment extends Fragment{
             build.show();
         });
 
-        /**
+        /*
          * Update Option 4
          * User will type the new option in the box and it will update in the database
          */
@@ -306,9 +297,26 @@ public class QuestionFragment extends Fragment{
         String afterDot = StringUtils.substringAfter(answer, ".");
         afterDot = StringUtils.substring(afterDot, 0, acc);
         String beforeDot = StringUtils.substringBefore(answer, ".");
-        String newOption = beforeDot+ "." +afterDot;
+        return beforeDot+ "." +afterDot;
+    }
 
-        return newOption;
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.i(ACTIVITY_NAME, "In onResume()");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.i(ACTIVITY_NAME, "In onPause()");
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i(ACTIVITY_NAME, "In onDestroy()");
+        super.onDestroy();
+        dbHelper.closeDB();
     }
 
 }

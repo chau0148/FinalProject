@@ -1,6 +1,7 @@
 package com.example.amychau.multiplechoicetest;
 
 /**
+ * This class gets and sets the fields in the Answer Table
  * Created by amychau on 4/13/2018.
  */
 
@@ -12,7 +13,7 @@ public class AnswerModel {
 
     public long getAnswerID(){return answerID; }
 
-    public void setAnswerID(long answerID){
+    void setAnswerID(long answerID){
         this.answerID = answerID;
     }
 
@@ -24,19 +25,19 @@ public class AnswerModel {
         this.answer = answer;
     }
 
-    public long getQuestionID() {
+    long getQuestionID() {
         return questionID;
     }
 
-    public void setQuestionID(long questionID) {
+    void setQuestionID(long questionID) {
         this.questionID = questionID;
     }
 
-    public String getAccuracy() {
+    String getAccuracy() {
         return accuracy;
     }
 
-    public void setAccuracy(String accuracy) {
+    void setAccuracy(String accuracy) {
         this.accuracy = accuracy;
     }
 

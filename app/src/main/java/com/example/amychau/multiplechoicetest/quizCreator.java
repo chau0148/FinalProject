@@ -1,47 +1,39 @@
 package com.example.amychau.multiplechoicetest;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.view.ActionMode;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-
+/**
+ * This class creates the questions for the quiz
+ */
 public class quizCreator extends AppCompatActivity {
 
     Button mcBtn;
     Button tfBtn;
     Button shortAnsBtn;
     String ACTIVITY_NAME = "Quiz Creator";
-    private AppCompatDelegate delagate;
+    private Toolbar toolbar;
 
     /**
      * While creating the activity, it will load a toolbar
      * where users can switch between the different activities
      * and four buttons that users can choose to add different types of questions
-     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_creator);
 
-        //Add toolbar to activity
-//        delagate = AppCompatDelegate.create(this, this);
-//        delagate.installViewFactory();
-//        super.onCreate(savedInstanceState);
-//        delagate.onCreate(savedInstanceState);
-//        delagate.setContentView(R.layout.quiz_creator);
-//        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.my_toolbar);
-//        delagate.setSupportActionBar(toolbar);
-
+        //Add a toolbar to the activity
+        toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
 
         Log.i(ACTIVITY_NAME, "In OnCreate()");
 
@@ -132,22 +124,6 @@ public class quizCreator extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(ACTIVITY_NAME, "In OnDestroy()");
-    }
-
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        super.onSupportActionModeStarted(mode);
-    }
-
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        super.onSupportActionModeFinished(mode);
-    }
-
-    @Nullable
-    @Override
-    public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
-        return null;
     }
 
 }

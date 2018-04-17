@@ -1,41 +1,33 @@
 package com.example.amychau.multiplechoicetest;
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CursorTreeAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.amychau.multiplechoicetest.DatabaseHelper;
-
-import org.w3c.dom.Text;
 
 /**
  * This class displays the questions in a listView
  * When user clicks the question it will bring it to a new activity to edit the question
+ * If in landscape mode, the fragment should be on the right hand side
  */
-public class Questions extends Activity {
+public class Questions extends AppCompatActivity {
 
     ListView listView;
     ArrayList<String> ar = new ArrayList<>();
@@ -51,6 +43,10 @@ public class Questions extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questions_activity);
 
+        //Add a toolbar to the activity
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
         dbHelper = new DatabaseHelper(getApplicationContext());
         db = dbHelper.getWritableDatabase();
 
@@ -61,12 +57,6 @@ public class Questions extends Activity {
         oDataSource.open();
         aDataSource.open();
 
-        List<QuestionModel> list =  dataSource.findQuestion();
-        for(int i=0;i<list.size();i++){
-            ar.add(list.get(i).getQuestion());
-            Log.i("QuestionList ",ar.get(i));
-        }
-
         View frameLayout = findViewById(R.id.question_land);
         if (frameLayout != null){
             checkLayout = true;
@@ -76,49 +66,32 @@ public class Questions extends Activity {
             Log.i(ACTIVITY_NAME, "Fragment Not Loaded");
         }
 
-//        List<OptionModel> optionList = oDataSource.findOptions();
-//        for(int i=0;i<optionList.size();i++){
-//            Log.i("optionList: ",optionList.get(i).getOptions());
-//        }
-//
-//        List<AnswerModel> answerList = aDataSource.findAnswer();
-//        for(int i=0;i<answerList.size();i++){
-//            Log.i("answer is: ", answerList.get(i).getAnswer());
-//        }
-
-//        // Questions in the chat stored in an Arraylist
+      // Questions in the chat stored in an Arraylist
         adapter = new Adapter(this, ar);
         listView = findViewById(R.id.questionList);
         listView.setAdapter(adapter);
 
-        /**
-         * The position is one less than what is selected.
-         */
-        final FragmentManager manager = getFragmentManager();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("pos",l+"");
-                String chosenQuestion = String.valueOf(adapterView.getItemAtPosition(i));
-                long rowId = l;
-                Log.e("clicked on ", chosenQuestion);
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Log.e("pos",l+"");
+            String chosenQuestion = String.valueOf(adapterView.getItemAtPosition(i));
+            Log.e("clicked on ", chosenQuestion);
 
-                if(checkLayout){
-                    Bundle bundle = new Bundle();
-                    bundle.putString("question", chosenQuestion);
-                    bundle.putLong("id", l);
-                    QuestionFragment qFragment = new QuestionFragment();
-                    qFragment.setArguments(bundle);
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.replace(R.id.question_land, qFragment);
-                    transaction.commit();
-                } else {
-                    Intent intent = new Intent(Questions.this, QuestionDetails.class);
-                    intent.putExtra("question", chosenQuestion);
-                    intent.putExtra("id", l);
-                    startActivity(intent);
-                }}
-            });
+            if(checkLayout){
+                final FragmentManager manager = getFragmentManager();
+                Bundle bundle = new Bundle();
+                bundle.putString("question", chosenQuestion);
+                bundle.putLong("id", l);
+                QuestionFragment qFragment = new QuestionFragment();
+                qFragment.setArguments(bundle);
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(R.id.question_land, qFragment);
+                transaction.commit();
+            } else {
+                Intent intent = new Intent(Questions.this, QuestionDetails.class);
+                intent.putExtra("question", chosenQuestion);
+                intent.putExtra("id", l);
+                startActivity(intent);
+            }});
     }
 
         private class Adapter extends ArrayAdapter<String> {
@@ -147,7 +120,7 @@ public class Questions extends Activity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        dbHelper.close();
+        dbHelper.closeDB();
         Log.i(ACTIVITY_NAME,  "In onDestroy()");
     }
 
@@ -160,5 +133,37 @@ public class Questions extends Activity {
             ar.add(list.get(i).getQuestion());
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.toolbar_menu, m);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch(mi.getItemId()){
+            case R.id.patient:
+                Log.d("Patient Form", "Selected");
+                //Go to Patient Form Activity
+                break;
+            case R.id.movie:
+                Log.d("Movie Information", "Selected");
+                //Go to Movie Information Activity
+                break;
+            case R.id.transpo:
+                Log.d("OC Transpo Information", "Selected");
+                //Go to OC Transpo Activity
+                break;
+            case R.id.help:
+                Log.d("Help Box", "Selected");
+                AlertDialog.Builder builder = new AlertDialog.Builder(Questions.this);
+                builder.setTitle(R.string.help_menu)
+                        .setMessage(R.string.help_info)
+                        .setPositiveButton("OK", (dialogInterface, i) -> Log.d("User clicked", "OK")).show();
+                break;
+        }
+        return true;
     }
 }

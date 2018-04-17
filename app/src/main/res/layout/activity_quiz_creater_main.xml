@@ -6,11 +6,7 @@
     tools:context="com.example.amychau.multiplechoicetest.QuizCreaterMain"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        />
+  <include layout="@layout/app_bar"/>
 
     <TextView
         android:layout_width="wrap_content"
