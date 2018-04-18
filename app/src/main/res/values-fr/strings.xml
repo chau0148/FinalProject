@@ -49,5 +49,19 @@
     <string name="shortQues">Plus courte longueur: </string>
     <string name="avgQues">Longueur moyenne: </string>
 
-    
+
+    <string name="search">Cherche</string>
+    <string name="movie_delete_message">Effacer</string>
+    <string name="movie_save_button">Enregistrer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_movie_toolbar">MovieToolbar</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="movie_about">Décrire</string>
+    <string name="movie_greeting">Bienvenue à MovieApp</string>
+    <string name="movie_saved">Film Enregistré</string>
+    <string name="movie_deleted">Film supprimé</string>
+    <string name="movie_snack">Entrez le nom du film dans la barre de recherche pour trouver votre film préféré</string>
+    <string name="movie_version">MovieApp \n version 1.0 \n by Jim Cassidy</string>
 </resources>

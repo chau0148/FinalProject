@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/movie_frame"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/movie_search"
+        android:layout_width="220dp"
+        android:layout_height="52dp"
+        android:layout_alignLeft="@id/movie_search_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/movie_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/movie_list"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/movie_list"
+        android:text="@string/search" />
+
+    <FrameLayout
+        android:id="@+id/movie_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/movie_list"></FrameLayout>
+
+    <ListView
+        android:id="@+id/movie_list"
+        android:layout_width="299dp"
+        android:layout_height="267dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="52dp"
+        android:layout_alignParentLeft="true" />
+</RelativeLayout>

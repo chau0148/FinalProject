@@ -49,4 +49,23 @@
     <string name="shortQues">Shortest Length: </string>
     <string name="avgQues">Average Length: </string>
 
+    <!--<string name="app_name">MovieApp</string>-->
+    <string name="search">search</string>
+    <string name="movie_delete_message">Delete</string>
+    <string name="movie_save_button">Save</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_movie_toolbar">MovieToolbar</string>
+    <string name="movie_box_title">Enter new greeting</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="movie_about">About</string>
+    <string name="movie_greeting">Welcome to MovieApp</string>
+    <string name="movie_saved">Movie Saved</string>
+    <string name="movie_deleted">Movie Deleted</string>
+    <string name="movie_snack">Enter movie name in search bar to find your favourite movie</string>
+    <string name="movie_version">MovieApp \n version 1.0 \n by Jim Cassidy</string>
+    <string name="movie_rating">Your average movie rating</string>
+
 </resources>

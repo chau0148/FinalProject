@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.jimcassidy.lab08.TestToolbar">
+    <item
+        android:id="@+id/movie_about"
+        android:orderInCategory="100"
+        android:title="@string/movie_about"
+        app:showAsAction="never" />
+</menu>

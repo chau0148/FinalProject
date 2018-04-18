@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name=" android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,15 @@
             android:label="@string/title_activity_toolbar" />
         <activity android:name=".importQuestion" />
         <activity android:name="quizActivty.QuizActivity"></activity>
+        <activity android:name=".MovieActivity">
+        </activity>
+        <activity android:name=".MovieDetails"></activity>
+        <activity android:name=".MovieList"></activity>
+        <activity android:name=".MovieDatabaseHelper"></activity>
+        <activity android:name=".MovieSaved" />
+        <activity
+            android:name=".MovieToolbar"
+            android:label="@string/title_activity_movie_toolbar"></activity>
     </application>
 
 </manifest>

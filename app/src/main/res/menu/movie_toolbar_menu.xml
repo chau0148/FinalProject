@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="1"
+        android:title="@string/movie_about"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_one"
+        android:title="One"
+        android:icon="@drawable/questionmark"
+        android:orderInCategory="11"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_two"
+        android:title="One"
+        android:icon="@drawable/medal2"
+        android:orderInCategory="22"
+        app:showAsAction="always" />
+
+</menu>

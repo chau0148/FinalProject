@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MovieFragment">
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="fill_horizontal"
+        />
+
+    <ImageView
+        android:id="@+id/movie_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_title"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        />
+
+    <TextView
+        android:id="@+id/movie_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_image"
+        android:layout_gravity="fill_horizontal"/>
+
+    <TextView
+        android:id="@+id/movie_actors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_description"
+        android:layout_gravity="fill_horizontal"/>
+
+    <TextView
+        android:id="@+id/movie_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_actors"
+        android:layout_gravity="fill_horizontal"/>
+
+    <TextView
+        android:id="@+id/movie_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_genre"
+        android:layout_gravity="fill_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/movie_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_rating"
+        android:layout_gravity="fill_horizontal"/>
+
+    <ProgressBar
+        android:id="@+id/movie_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/movie_length" />
+
+
+
+    <Button
+        android:id="@+id/movie_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/progress"
+        android:text="@string/movie_save_button" />
+
+</RelativeLayout>
