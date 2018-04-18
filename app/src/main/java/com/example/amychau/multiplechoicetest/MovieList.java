@@ -63,12 +63,12 @@ public class MovieList extends AppCompatActivity {
         String greeting=getString(R.string.movie_greeting);
         Toast.makeText(getApplicationContext(),greeting, Toast.LENGTH_LONG).show();
 
-        //isPhone = (findViewById(R.id.movie_frame) == null);
+        isPhone = (findViewById(R.id.movie_frame) == null);
         movie_search_button = (Button) findViewById(R.id.movie_search_button);
         movie_list = (ListView) findViewById(R.id.movie_list);
         movie_search_text = (EditText) findViewById(R.id.movie_search);
-        //movie_frame_layout = (View) findViewById(R.id.movie_frame_layout);
-        //movie_title = (TextView) findViewById(R.id.movie_title);
+        movie_frame_layout = (View) findViewById(R.id.movie_frame_layout);
+        movie_title = (TextView) findViewById(R.id.movie_title);
         final ContentValues values = new ContentValues();
 
         //movie_list.setText("");
@@ -127,7 +127,7 @@ public class MovieList extends AppCompatActivity {
                     mf.setArguments(infoPassed);
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    //ft.replace(R.id.movie_frame_layout, mf);
+                    ft.replace(R.id.movie_frame_layout, mf);
                     //ft.addToBackStack("Any string here"); //back button will unto transactionft.commit(); //put the fragment on the screen
                 } else { // for phone: step 4 MessageDetails
 
@@ -239,7 +239,7 @@ public class MovieList extends AppCompatActivity {
                 messagefrag.setArguments(data.getBundleExtra("savedMovie"));
                 FragmentManager fragman = getFragmentManager();
                 FragmentTransaction fragtran = fragman.beginTransaction();
-                //fragtran.replace(R.id.movie_frame_layout, messagefrag);
+                fragtran.replace(R.id.movie_frame_layout, messagefrag);
                 fragtran.commit(); //put the fragment on the screen*/
             }
         }
